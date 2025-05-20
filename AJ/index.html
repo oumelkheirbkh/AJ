@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma Candidature | Ambassade du Japon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --shironeri: #fcfaf2; /* Blanc traditionnel washi */
+      --shoujouhi: #d7003a; /* Rouge vermillon sacré */
+      --kihada: #e6b422; /* Or des temples */
+      --sumi: #2c2c2c; /* Encre noire */
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Playfair Display', serif;
+      background-color: var(--shironeri);
+      color: var(--sumi);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M30 30L70 70M30 70L70 30" stroke="%23d7003a" stroke-width="0.3" stroke-opacity="0.05"/></svg>');
+      overflow-x: hidden;
+    }
+
+    /* Animation de pétales de sakura améliorée */
+    .sakura-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    
+    .sakura-petal {
+      position: absolute;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d7003a"><path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M15.5,8C16.3,8 17,8.7 17,9.5C17,10.3 16.3,11 15.5,11C14.7,11 14,10.3 14,9.5C14,8.7 14.7,8 15.5,8M8.5,8C9.3,8 10,8.7 10,9.5C10,10.3 9.3,11 8.5,11C7.7,11 7,10.3 7,9.5C7,8.7 7.7,8 8.5,8M12,11C13.1,11 14,11.9 14,13C14,14.1 13.1,15 12,15C10.9,15 10,14.1 10,13C10,11.9 10.9,11 12,11M19,17V19H5V17C5,14.8 8.1,13 12,13C15.9,13 19,14.8 19,17Z" /></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0;
+      animation: falling linear infinite;
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 0 2px rgba(215, 0, 58, 0.3));
+    }
+    
+    @keyframes falling {
+      0% {
+        transform: 
+          translate(var(--start-x), -10%) 
+          rotate(0deg) 
+          rotateX(var(--rotate-x))
+          rotateY(var(--rotate-y));
+        opacity: 0;
+      }
+      10% {
+        opacity: var(--opacity);
+      }
+      90% {
+        opacity: calc(var(--opacity) * 0.7);
+      }
+      100% {
+        transform: 
+          translate(var(--end-x), 100vh) 
+          rotate(360deg)
+          rotateX(var(--rotate-x))
+          rotateY(var(--rotate-y));
+        opacity: 0;
+      }
+    }
+
+    /* Animation de fond subtile */
+    .background-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(215,0,58,0.03) 0%, transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(230,180,34,0.03) 0%, transparent 25%);
+      z-index: -1;
+    }
+.rotating-text {
+  font-size: 2rem;
+  color: var(--shoujouhi);
+  font-weight: bold;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  animation: fadeInOut 1s ease-in-out;
+  transition: opacity 0.5s ease;
+}
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  50% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
+    /* Conteneur principal */
+    .container {
+      max-width: 800px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      background-color: rgba(252, 250, 242, 0.85);
+      border-radius: 5px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    /* Titre principal */
+    .main-title {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--shoujouhi);
+      position: relative;
+      display: inline-block;
+    }
+
+    .main-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, var(--shoujouhi), var(--kihada));
+      animation: title-underline 1.5s ease-out forwards;
+    }
+
+    @keyframes title-underline {
+      from { width: 0% }
+      to { width: 100% }
+    }
+
+    /* Sous-titre */
+    .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      color: var(--sumi);
+      font-weight: 400;
+    }
+
+    /* Bouton de téléchargement */
+    .download-btn {
+      background-color: var(--shoujouhi);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 3px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-family: 'Playfair Display', serif;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(215,0,58,0.3);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(215,0,58,0.4);
+    }
+
+    .download-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+
+    .download-btn:hover::after {
+      left: 100%;
+    }
+
+    /* Vagues fluides et élégantes */
+    .ocean {
+      height: 150px;
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background-repeat: repeat no-repeat;
+      background-position: 0 bottom;
+      transform-origin: center bottom;
+      opacity: 0.8;
+    }
+
+    .wave-top {
+      background-size: 50% 100px;
+      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path fill="%23d7003a" fill-opacity="0.2" d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" ></path></svg>');
+      animation: wave 15s linear infinite;
+    }
+
+    .wave-middle {
+      background-size: 50% 120px;
+      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path fill="%23d7003a" fill-opacity="0.15" d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" ></path></svg>');
+      animation: wave 10s linear infinite reverse;
+    }
+
+    .wave-bottom {
+      background-size: 50% 100px;
+      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path fill="%23d7003a" fill-opacity="0.1" d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" ></path></svg>');
+      animation: wave 20s linear infinite;
+    }
+
+    @keyframes wave {
+      0% {
+        transform: translateX(0) translateZ(0) scaleY(1);
+      }
+      50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.95);
+      }
+      100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1.5rem;
+        margin: 1rem;
+      }
+      
+      .main-title {
+        font-size: 2rem;
+      }
+      
+      .subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .ocean {
+        height: 100px;
+      }
+      
+      .wave-top {
+        background-size: 50% 80px;
+      }
+      
+      .wave-middle {
+        background-size: 50% 90px;
+      }
+      
+      .wave-bottom {
+        background-size: 50% 70px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="rotating-text"></div>
+
+  <!-- Animation de pétales de sakura -->
+  <div class="sakura-container" id="sakuraContainer"></div>
+  
+  <!-- Fond décoratif -->
+  <div class="background-pattern"></div>
+  
+  <!-- Contenu principal -->
+  <div class="container">
+    <h1 class="main-title">Ma Candidature</h1>
+    <p class="subtitle">Vers l'Ambassade du Japon...</p>
+    
+    <a href="Cv_BKHITI_OumElKheir.pdf" download class="download-btn">Télécharger mon dossier complet</a>
+  </div>
+  
+  <script>
+    // Création des pétales de sakura améliorée
+    function createSakuraPetals() {
+      const container = document.getElementById('sakuraContainer');
+      const petalCount = 25; // Augmenté pour plus de densité
+      const petalSizes = [12, 15, 18, 20, 22]; // Tailles variées
+      
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.classList.add('sakura-petal');
+        
+        // Propriétés aléatoires
+        const size = petalSizes[Math.floor(Math.random() * petalSizes.length)];
+        const duration = Math.random() * 15 + 15; // Plus lent
+        const delay = Math.random() * -30;
+        const startX = Math.random() * 100;
+        const endX = (Math.random() * 60) - 30; // Plus de mouvement horizontal
+        const rotateX = Math.random() * 360;
+        const rotateY = Math.random() * 360;
+        const opacity = Math.random() * 0.5 + 0.3; // Opacité variable
+        
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size}px`;
+        petal.style.left = `${startX}vw`;
+        petal.style.animationDuration = `${duration}s`;
+        petal.style.animationDelay = `${delay}s`;
+        petal.style.setProperty('--start-x', `${startX}vw`);
+        petal.style.setProperty('--end-x', `${endX}px`);
+        petal.style.setProperty('--rotate-x', `${rotateX}deg`);
+        petal.style.setProperty('--rotate-y', `${rotateY}deg`);
+        petal.style.setProperty('--opacity', opacity);
+        
+        // Ajouter un léger flou pour les pétales éloignés
+        if (Math.random() > 0.7) {
+          petal.style.filter = 'blur(1px)';
+        }
+        
+        container.appendChild(petal);
+      }
+      
+      // Ajouter des pétales supplémentaires périodiquement
+      setInterval(() => {
+        if (container.children.length < 40) { // Limite max
+          const newPetal = document.createElement('div');
+          newPetal.classList.add('sakura-petal');
+          
+          const size = petalSizes[Math.floor(Math.random() * petalSizes.length)];
+          const duration = Math.random() * 15 + 15;
+          const startX = Math.random() * 100;
+          const endX = (Math.random() * 60) - 30;
+          const rotateX = Math.random() * 360;
+          const rotateY = Math.random() * 360;
+          const opacity = Math.random() * 0.5 + 0.3;
+          
+          newPetal.style.width = `${size}px`;
+          newPetal.style.height = `${size}px`;
+          newPetal.style.left = `${startX}vw`;
+          newPetal.style.animationDuration = `${duration}s`;
+          newPetal.style.setProperty('--start-x', `${startX}vw`);
+          newPetal.style.setProperty('--end-x', `${endX}px`);
+          newPetal.style.setProperty('--rotate-x', `${rotateX}deg`);
+          newPetal.style.setProperty('--rotate-y', `${rotateY}deg`);
+          newPetal.style.setProperty('--opacity', opacity);
+          
+          if (Math.random() > 0.7) {
+            newPetal.style.filter = 'blur(1px)';
+          }
+          
+          container.appendChild(newPetal);
+        }
+      }, 2000);
+    }
+    
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+      createSakuraPetals();
+      
+      // Effet de vent aléatoire
+      setInterval(() => {
+        const petals = document.querySelectorAll('.sakura-petal');
+        petals.forEach(petal => {
+          const currentX = parseFloat(petal.style.getPropertyValue('--end-x') || 0);
+          const windChange = (Math.random() * 10) - 5; // Petit changement aléatoire
+          petal.style.setProperty('--end-x', `${currentX + windChange}px`);
+        });
+      }, 3000);
+    });
+     const messages = [ 'いらっしゃいませ','Bienvenue', 'Welcome', 'مرحبا'];
+  const textElement = document.querySelector('.rotating-text');
+  let index = 0;
+
+  function rotateText() {
+    textElement.style.opacity = 0;
+    setTimeout(() => {
+      textElement.textContent = messages[index];
+      textElement.style.opacity = 1;
+      index = (index + 1) % messages.length;
+    }, 500);
+  }
+
+  // Lancer immédiatement et répéter toutes les 3 secondes
+  rotateText();
+  setInterval(rotateText, 3000);
+  </script>
+</body>
+</html>
